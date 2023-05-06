@@ -4,7 +4,6 @@ import {SectionType} from "./types";
 import SwitchLanguage from "./icons/Switch";
 import {useStore} from "./hooks/useStore";
 import SelectLanguage from "./components/SelectLanguage";
-// import {translateText} from "./utils/translate";
 import {translate as translateText} from "./utils/translateFree";
 import {useDebounce} from "./hooks/useDebounce";
 import Sound from "./icons/Sound";
