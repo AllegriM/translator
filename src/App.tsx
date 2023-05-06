@@ -23,7 +23,7 @@ function App() {
     setResult,
   } = useStore();
 
-  const debounceText = useDebounce(text, 1500);
+  const debounceText = useDebounce(text, 1000);
 
   useEffect(() => {
     if (debounceText === "") return;

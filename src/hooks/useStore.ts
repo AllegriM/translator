@@ -1,6 +1,6 @@
 import {useReducer} from "react";
-import {AUTO_LANGUAGE} from "src/constants/constants";
 
+import {AUTO_LANGUAGE} from "../constants/constants";
 import {type ACTION, type INITIAL_STATE} from "../types";
 
 const initialState: INITIAL_STATE = {
