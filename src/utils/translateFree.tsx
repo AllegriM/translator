@@ -1,6 +1,8 @@
-export async function translate(text: string, fromLanguage: string, toLanguage: string) {
+import {FromLanguage, LANGUAGE} from "src/types";
+
+export async function translate(text: string, fromLanguage: FromLanguage, toLanguage: LANGUAGE) {
   const URL = await fetch(
-    `${import.meta.env.VITE_MEMORY_URL}?q=${text}&langpair=${fromLanguage}|${toLanguage}`,
+    `${import.meta.env.VITE_MEMORY_URL}get?q=${text}&langpair=${fromLanguage}|${toLanguage}`,
   );
   const {responseData} = await URL.json();
 
@@ -8,5 +10,3 @@ export async function translate(text: string, fromLanguage: string, toLanguage: 
 
   return translatedText;
 }
-
-// https://api.mymemory.translated.net/get?q=Hello World!&langpair=en|it
