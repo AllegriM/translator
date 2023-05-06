@@ -1,4 +1,5 @@
 import {useReducer} from "react";
+import {AUTO_LANGUAGE} from "src/constants/constants";
 
 import {type ACTION, type INITIAL_STATE} from "../types";
 
@@ -10,35 +11,51 @@ const initialState: INITIAL_STATE = {
   loading: false,
 };
 
-function reducer(state: typeof initialState, action: ACTION) {
+function reducer(state: INITIAL_STATE, action: ACTION) {
   const {type} = action;
 
   if (type === "SWITCH_LANGUAGES") {
+    if (state.fromLanguage === AUTO_LANGUAGE) return state;
+
+    const loading = state.text !== "";
+
     return {
       ...state,
+      loading,
+      result: "",
       fromLanguage: state.toLanguage,
       toLanguage: state.fromLanguage,
     };
   }
 
   if (type === "SET_FROM_LANGUAGE") {
+    const loading = state.text !== "";
+
     return {
       ...state,
       fromLanguage: action.payload,
+      result: "",
+      loading,
     };
   }
 
   if (type === "SET_TO_LANGUAGE") {
+    const loading = state.text !== "";
+
     return {
       ...state,
       toLanguage: action.payload,
+      result: "",
+      loading,
     };
   }
 
   if (type === "SET_FROM_TEXT") {
+    const loading = action.payload !== "";
+
     return {
       ...state,
-      loading: true,
+      loading,
       text: action.payload,
       result: "",
     };
@@ -60,23 +77,24 @@ export function useStore() {
     reducer,
     initialState,
   );
+
   const switchLanguage = () => {
     dispatch({type: "SWITCH_LANGUAGES"});
   };
 
-  const setFromLanguage = (payload: typeof fromLanguage) => {
+  const setFromLanguage = (payload: (typeof initialState)["fromLanguage"]) => {
     dispatch({type: "SET_FROM_LANGUAGE", payload});
   };
 
-  const setToLanguage = (payload: typeof toLanguage) => {
+  const setToLanguage = (payload: (typeof initialState)["toLanguage"]) => {
     dispatch({type: "SET_TO_LANGUAGE", payload});
   };
 
-  const setFromText = (payload: typeof text) => {
+  const setFromText = (payload: (typeof initialState)["text"]) => {
     dispatch({type: "SET_FROM_TEXT", payload});
   };
 
-  const setResult = (payload: typeof result) => {
+  const setResult = (payload: (typeof initialState)["result"]) => {
     dispatch({type: "SET_RESULT", payload});
   };
 
