@@ -1,7 +1,23 @@
 export const ALL_LANGUAGES = {
+  auto: "Auto",
   es: "Español",
   en: "Ingles",
-  por: "Portugues",
+  pt: "Portugues",
+  fr: "Frances",
+  de: "Aleman",
+  it: "Italiano",
+  nl: "Holandés",
+  tr: "Turco",
+  cs: "Checo",
+  da: "Danés",
+  ar: "Arábe",
+  zh: "Chino",
+  hu: "Húngaro",
+  sr: "Serbio",
+  sk: "Esloveno",
+  ja: "Japonés",
+  ru: "Ruso",
+  pl: "Polaco",
 };
 
 export const AUTO_LANGUAGE = "auto";
